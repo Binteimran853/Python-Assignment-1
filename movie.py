@@ -1,4 +1,4 @@
-import os, csv
+import csv
 import heapq
 
 from dataclasses import dataclass
@@ -21,7 +21,7 @@ class MovieParser:
         self.movies = []
 
     def parse_movies(self):
-        with open(os.getenv('FILE_PATH'), 'r') as file_object:
+        with open(self.FILE_PATH, 'r') as file_object:
             reader_obj = csv.DictReader(file_object)
             for row in reader_obj:
                 self.movies.append(
@@ -37,6 +37,7 @@ class MovieParser:
                 )
         return self.movies
 
+
 @dataclass()
 class YearReport:
     highest : Movie
@@ -47,7 +48,6 @@ class YearReport:
 class GenresReport:
     total_movies_found : int
     avg_rating : float
-
 
 class ReportGenerator:
     def __init__(self):
@@ -69,8 +69,8 @@ class ReportGenerator:
                            avg_rating = sum(rating) / len(movies_objects))
 
     def report_num_votes(self, movies, year):
-        self.year_movies = [obj for obj in movies if obj.start_year == year]
-        top_ten_movies = heapq.nlargest(10, self.year_movies , key = lambda obj: obj.num_votes)
+        self.year_movies = [movie for movie in movies if movie.start_year == year]
+        top_ten_movies = heapq.nlargest(10, self.year_movies , key = lambda movie: movie.num_votes)
         result = top_ten_movies[0].num_votes // 80
         print(top_ten_movies[0].original_title, '😀 '* 80, top_ten_movies[0].num_votes)
         for top_movie in top_ten_movies[1:]:

@@ -1,4 +1,5 @@
 import argparse
+
 def command_line_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-r', '--year-report', type=int)

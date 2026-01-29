@@ -75,7 +75,7 @@ class ReportGenerator:
         print(top_ten_movies[0].original_title, '😀 '* 80, top_ten_movies[0].num_votes)
         for top_movie in top_ten_movies[1:]:
             print(top_movie.original_title,'😀 ' * (top_movie.num_votes // result), top_movie.num_votes)
-        return top_ten_movies
+        return
 
 
 

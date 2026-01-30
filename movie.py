@@ -1,7 +1,6 @@
 import csv
 import heapq
 import math
-
 from dataclasses import dataclass
 
 @dataclass()
@@ -15,7 +14,7 @@ class Movie:
     rating : float
     num_votes : int
 
-
+# MovieParser to parse each movie from CSV file
 class MovieParser:
     def __init__(self, FILE_PATH):
         self.FILE_PATH = FILE_PATH
@@ -45,6 +44,7 @@ class MovieParser:
             raise FileNotFoundError('Movie file not found')
         return self.movies
 
+
 """ Data classes to store calcultaions after result """
 @dataclass()
 class YearReport:
@@ -52,13 +52,14 @@ class YearReport:
     lowest : Movie
     avg_runtime_minutes : float
 
+
 @dataclass()
 class GenresReport:
     total_movies_found : int
     avg_rating : float
 
-""" ReportGenerator class to peform calculations on specfic data """
 
+""" ReportGenerator class to peform calculations on specfic data """
 class ReportGenerator:
     def __init__(self):
         self.year_movies = []

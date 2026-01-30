@@ -12,18 +12,25 @@ def main():
     report = ReportGenerator()
 
     if args.year_report:
-        report_result= report.report_year(movies, args.year_report)
-        print(f'Highest rating: {report_result.highest.rating} - {report_result.highest.original_title}')
-        print(f'lowest rating: {report_result.lowest.rating} - {report_result.lowest.original_title}')
-        print(f'Average minutes: {report_result.avg_runtime_minutes:.2f}')
-
+        try:
+            report_result = report.report_year(movies, args.year_report)
+            print(f'Highest rating: {report_result.highest.rating} - {report_result.highest.original_title}')
+            print(f'lowest rating: {report_result.lowest.rating} - {report_result.lowest.original_title}')
+            print(f'Average minutes: {report_result.avg_runtime_minutes:.2f}')
+        except ValueError as e:
+            print(e)
     if args.genres:
-        report_result = report.report_genre(movies, args.genres)
-        print(f'Movies Found: {report_result.total_movies_found}')
-        print(f'Average Rating: {report_result.avg_rating:.2f}')
-
+        try:
+            report_result = report.report_genre(movies, args.genres)
+            print(f'Movies Found: {report_result.total_movies_found}')
+            print(f'Average Rating: {report_result.avg_rating:.2f}')
+        except ValueError as e:
+            print(e)
     if args.vote_report:
-        report.report_num_votes(movies, args.vote_report)
+        try:
+            report.report_num_votes(movies, args.vote_report)
+        except ValueError as e:
+            print(e)
 
 
 if __name__ == '__main__':

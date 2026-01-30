@@ -1,14 +1,18 @@
 from dotenv import load_dotenv
 import os
-load_dotenv()
-
 from movie import  MovieParser, ReportGenerator
 from commandLineParser import command_line_parser
+# Load environment variables
+load_dotenv()
+
 
 def main():
+    # Get CLI arguments
     args = command_line_parser()
+    # Parse the movies
     parser = MovieParser(os.getenv('FILE_PATH'))
     movies = parser.parse_movies()
+    # Generate Reports
     report = ReportGenerator()
 
     if args.year_report:

@@ -1,5 +1,6 @@
 import csv
 import heapq
+import math
 
 from dataclasses import dataclass
 
@@ -10,7 +11,7 @@ class Movie:
     original_title : str
     start_year : int
     runtime_minutes : int
-    genres : list[str]
+    genres : set[str]
     rating : float
     num_votes : int
 
@@ -28,7 +29,7 @@ class MovieParser:
                     Movie(id = row['id'],
                           title_type = row['titleType'],
                           original_title = row['originalTitle'],
-                          genres = list(row['genres'].lower().split(',')),
+                          genres = set(row['genres'].lower().split(',')),
                           start_year = int(row['startYear']),
                           runtime_minutes = int(row['runtimeMinutes']) if row['runtimeMinutes'] not in (None, '', '\\N') else 0,
                           rating = float(row['rating']),
@@ -62,19 +63,18 @@ class ReportGenerator:
                           avg_runtime_minutes = avg_runtime_minutes)
 
     def report_genre(self, movies, genre):
-        print(genre)
         movies_objects = [movie for movie in movies if genre.lower() in movie.genres]
-        rating = [movie.rating for movie in movies_objects]
+        avg_rating = sum(movie.rating for movie in movies_objects) / len(movies_objects)
         return GenresReport(total_movies_found = len(movies_objects),
-                           avg_rating = sum(rating) / len(movies_objects))
+                           avg_rating = avg_rating)
 
     def report_num_votes(self, movies, year):
         self.year_movies = [movie for movie in movies if movie.start_year == year]
         top_ten_movies = heapq.nlargest(10, self.year_movies , key = lambda movie: movie.num_votes)
-        result = top_ten_movies[0].num_votes // 80
+        result = math.ceil(top_ten_movies[0].num_votes / 80)
         print(top_ten_movies[0].original_title, '😀 '* 80, top_ten_movies[0].num_votes)
         for top_movie in top_ten_movies[1:]:
-            print(top_movie.original_title,'😀 ' * (top_movie.num_votes // result), top_movie.num_votes)
+            print(top_movie.original_title,'😀 ' * math.ceil((top_movie.num_votes / result)), top_movie.num_votes)
         return
 
 

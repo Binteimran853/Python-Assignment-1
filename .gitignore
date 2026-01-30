@@ -1,0 +1,16 @@
+# Virtual environment
+.venv/
+env/
+venv/
+
+#Environment Variable File
+.env
+
+#PyCharm Setting
+.idea/
+
+#OS Files
+.DS_Store
+Thumbs.db
+
+

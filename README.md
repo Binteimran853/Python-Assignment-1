@@ -15,8 +15,8 @@ Reports include:
 3. Generate top-voted movies for a given year (`-v`)
 4. Uses environment variables for CSV file path (`FILE_PATH`) 
 ## Steps to Follow
-`git clone https://github.com/Binteimran853/Python-Assignment-1.git`
-`cd Python-Assignment-1`
+- `git clone https://github.com/Binteimran853/Python-Assignment-1.git`
+- `cd Python-Assignment-1`
 
 ### Set the CSV file path
 Create a .env file in the root directory:
@@ -27,9 +27,9 @@ example=> FILE_PATH = '/Users/dev/downloads/movies.csv'
 `pip install python-dotenv`
 
 ## How TO Run:
-`python movies_parser.py -r 1903`       # Year report
-`python movies_parser.py -g Comedy`      # Genre report
-`python movies_parser.py -v 1895`        # Top votes report
-`python movies_parser.py -r 1903 -g Comedy -v 1895`   # Multiple reports
+- `python movies_parser.py -r 1903`       # Year report
+- `python movies_parser.py -g Comedy`      # Genre report
+- `python movies_parser.py -v 1895`        # Top votes report
+- `python movies_parser.py -r 1903 -g Comedy -v 1895`   # Multiple reports
 
-## Note: Use 'python3' in CLI instead of 'python' if system have python3
+#### Note: Use 'python3' in CLI instead of 'python' if system have python3

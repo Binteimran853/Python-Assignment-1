@@ -1,6 +1,6 @@
 # Virtual environment
 .venv/
-env/
+.env/
 venv/
 
 #Environment Variable File
@@ -9,8 +9,12 @@ venv/
 #PyCharm Setting
 .idea/
 
+# Byte-compiled / Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
 #OS Files
 .DS_Store
 Thumbs.db
-
 
